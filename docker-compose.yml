@@ -1,0 +1,15 @@
+services:
+  shortlink:
+    container_name: shortlink
+    build: ./app
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=file:/app/data/shortlinks.db
+    volumes:
+      - ./data:/app/data
+    networks:
+      - hosting_external
+
+networks:
+  hosting_external:
+    external: true
